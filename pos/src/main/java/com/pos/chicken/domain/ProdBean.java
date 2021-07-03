@@ -40,10 +40,10 @@ public class ProdBean {
 	@Column(name="Prod_Count")
 	private Integer prodCount;
 	
-	@Column(name="Prod_Img")
-	@Lob
-	@Type(type="org.hibernate.type.ImageType")
-	private  byte[] prodImg;
+//	@Column(name="Prod_Img")
+//	@Lob
+//	@Type(type="org.hibernate.type.ImageType")
+//	private  byte[] prodImg;
 
 	
 //	@JsonManagedReference

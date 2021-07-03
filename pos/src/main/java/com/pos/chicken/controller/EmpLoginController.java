@@ -19,9 +19,11 @@ public class EmpLoginController {
 	@RequestMapping(
 			path= {"/pages/emp.controller"}
 			)
-	public String method(String empid, String password,Model model, HttpSession session) {
-		
-		
+	public String method(
+			String empid,
+			String password,
+			Model model,
+			HttpSession session) {
 		
 		
 		//呼叫model
@@ -33,12 +35,8 @@ public class EmpLoginController {
 		}else {
 			session.setAttribute("emp", bean);
 		}
-		
 		return "redirect:/abc";
 	}
-	
-	
-	
 	
 }
 

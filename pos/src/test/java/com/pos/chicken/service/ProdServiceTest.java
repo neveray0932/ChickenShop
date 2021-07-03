@@ -14,13 +14,16 @@ public class ProdServiceTest {
 	@Autowired
 	ProdRepository dao;
 	
-	@Test
+//	@Test
 	public void select() {
-		
 //		prodService.select(null);
 //		System.out.println(prodService.select(null));
 		dao.findAll();
 		System.out.println(dao.findAll().get(0).getProdName());
 	}
-
+	
+	@Test
+	public void test() {
+		
+	}
 }

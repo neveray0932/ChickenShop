@@ -39,6 +39,34 @@
 th, td {
 	text-align: center;
 }
+
+.myfinal {
+	margin-left: 40%;
+}
+
+.myfinal1 {
+	text-align: center;
+	font-family: "fantasy";
+	font-size: 200%;
+}
+
+.myfinal2 {
+	text-align: center;
+	font-size: 250%;
+}
+
+.myfinal3 {
+	text-align: center;
+	font-size: 150%;
+}
+
+.myfinal4 {
+	width: 80px;
+	height: 80px;
+	border-radius: 100px;
+	background-color: #FAF0E4;
+	margin-top: 30px;
+}
 </style>
 </head>
 
@@ -52,78 +80,35 @@ th, td {
 			style="width: 80%; margin: auto;">
 
 		<div class="collapse navbar-collapse" id="navbarNav">
-			<a class="navbar-brand" href="<c:url value="/pages/home.page"/>"> <img
-				src="../img/LOGO.png" alt="logo" width="50px">雞排點餐系統
+			<a class="navbar-brand" href="<c:url value="/pages/home.page"/>">
+				<img src="../img/LOGO.png" alt="logo" width="50px">雞排點餐系統
 			</a>
-
 			<ul class="navbar-nav">
-
 				<li class="nav-item active"><a class="nav-link"
 					href="<c:url value="/pages/menu.page"/>"><span class="sr-only">餐點菜單</span></a></li>
-
 			</ul>
-
 			<ul class="navbar-nav ms-auto">
 				<li class="nav-item"><a class="nav-link" href="">註冊/登入</a></li>
-
 				<li class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button"
 						id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">購物車</button>
-
 					<div class="dropdown-menu" id="">
 						<label class="dropdown-item" for="" id="a"></label> <label
-							class="dropdown-item" for="" id="b"></label> <label
-							class="dropdown-item" for="" id="c"></label> <a
-							href="<c:url value="/pages/shopcar.page"/>"><button id="gotocart">前往結帳</button> </a>
+							class="dropdown-item" for="" id="b"></label>
+						<labelmclass ="dropdown-item" for="" id="c"> </label> <a
+							href="<c:url value="/pages/shopcar.page"/>"><button
+								id="gotocart">前往結帳</button> </a>
 					</div>
-
 				</li>
 			</ul>
-
 		</div>
 		</nav> </nav>
-
 
 
 		<!-- img照片 -->
 		<img class="myfinal" src="../img/f1.jpg">
 
-		<!-- 訂單訊息 -->
-		<%-- 		<c:if test="${not empty select}"> --%>
-		<div>
-			<form action="<c:url value="/secure/prod.controller" />" method="get">
-				<table>
-					<thead>
-						<tr>
-							<th>產品ID</th>
-							<th>產品名稱</th>
-						</tr>
-					</thead>
-					<tbody>
-
-						<tr>
-<!-- 							<td><input type="text" name="prodId"></td> -->
-<!-- 							<td><input type="text" name="prodMark"></td> -->
-
-
-							<td align="right"><input type="submit" value="Go"></td>
-						</tr>
-						<tr>
-							<td>${select}</td>
-							
-						</tr>
-						<tr>
-							<td>${select}</td>
-							<td></td>
-						</tr>
-
-
-					</tbody>
-				</table>
-			</form>
-		</div>
-		<%-- 		</c:if> --%>
 		<!-- 訂單訊息 -->
 		<!-- 收到訂單文字 -->
 		<div class="myfinal1">
@@ -135,39 +120,40 @@ th, td {
 			<span>訂單編號:</span>
 
 			<!-- 這邊塞資料庫的資料 -->
-			<span>123</span>
+			<span>${test.orderId}</span>
 		</div>
 
-
 		<div class="myfinal3">
-
 			<div>
 				<span>商品名稱：</span>
 				<!-- 以下放入後端資訊 -->
-				<span>雞排</span>
+				<c:forEach items="${test2}" var="a">
+					<span>${a.prodfk.prodName}</span>
+				</c:forEach>
 			</div>
-
 			<div>
 				<span>商品數量：</span>
 				<!-- 以下放入後端資訊 -->
-				<span>1</span>
+				<span>${test5}</span>
 			</div>
 
 			<div>
 				<span>商品總價：</span>
 				<!-- 以下放入後端資訊 -->
-				<span>10000</span>
+				<span>${test4}</span>
 			</div>
 
 		</div>
+		<!-- 按下後指向填寫表單 -->
+		<a href="<c:url value="/pages/feedback.page" />">
+		<button class="myfinal4">填寫表單</button>
+		</a>
 
 		<!-- 按下後指向回首頁 -->
-		<a href="../index.html"><button class="myfinal4">返回首頁</button></a>
+		<a href="<c:url value="/pages/home.page" />"><button
+				class="myfinal4">返回首頁</button></a>
 
 	</div>
-	<script type="text/javascript">
-		
-	</script>
 
 </body>
 </html>

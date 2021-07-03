@@ -43,7 +43,7 @@ public class ProdIOtest {
 			byte[] img = fout.toString().getBytes();
 			ProdBean bean = new ProdBean();
 			bean.setProdID(6);
-			bean.setProdImg(img);
+//			bean.setProdImg(img);
 			bean.setProdCount(10);
 			bean.setProdCategory("炸物");
 			bean.setProdName("上天雞排");

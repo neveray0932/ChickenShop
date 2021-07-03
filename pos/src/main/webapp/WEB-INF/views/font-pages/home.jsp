@@ -2,81 +2,47 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@ include file="../include.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
-<!-- <link rel="stylesheet" href="./css/mycss.css"> -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-	crossorigin="anonymous">
+</head>
 <style>
 .box {
 	display: inline-block;
 }
+
 #navbarNav {
-            position: relative;
-            margin: 0 150px 0 -150px;
-        }
+	position: relative;
+	margin: 0 150px 0 -150px;
+}
+
+body {
+	background-image: url(../img/menu3.jpg);
+	background-size: cover;
+}
+
+#index_position {
+	text-align: center;
+}
+
+.card {
+	position: absolute;
+	top: 10%;
+	size: 5px;
+}
 </style>
 
-</head>
 
 <body>
 
-	<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
-<!-- 	<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark" -->
-		style="width: 80%; margin: auto;">
 
-	<div class="collapse navbar-collapse" id="navbarNav">
-		<a class="navbar-brand" href="<c:url value="/pages/home.page"/>">
-			<img src="../img/LOGO.png" alt="logo" width="50px">雞排點餐系統
-		</a>
-
-		<ul class="navbar-nav ">
-			<li class="nav-item active"><a class="nav-link"
-				href="<c:url value="/pages/menu.page"/>"> <span class="sr-only">餐點菜單</span>
-			</a></li>
-
-		</ul>
-
-		<ul class="navbar-nav ms-auto" >
-			<li class="nav-item"><a class="nav-link" href="">後台登入</a></li>
-
-			<li class="dropdown">
-				<button class="btn btn-secondary dropdown-toggle" type="button"
-					id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false">購物車</button>
-
-				<div class="dropdown-menu " id="">
-					<label class="dropdown-item" for="" id="a"></label> <label
-						class="dropdown-item" for="" id="b"></label> <label
-						class="dropdown-item" for="" id="c"></label> <a
-						href="<c:url value="/pages/shopcar.page"/>   "><button
-							id="gotocart">前往結帳</button> </a>
-				</div>
-
-			</li>
-		</ul>
-
-	</div>
-
-	</nav>
-<!-- 	 </nav> -->
-
-	<div id="index_intro"
-		style="text-align: center; width: 80%; margin: auto;">
-
-
-		<div class="container container-background">
-
-
+	<div id="index_intro">
+		<div id="index_position">
 			<div class="box border-color">
-
 				<div class="warpper">
 					<p>【春季優惠 外送消費滿 $800 即贈香香炸雞中份乙份】</p>
 					<p>
@@ -109,19 +75,16 @@
 			data-bs-ride="carousel" style="margin: auto; width: 1200px;">
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="../img/indeximg1.jpg" class="d-block w-100" alt="...">
+					<img src="../img/home.jpg" style="height: 500px"
+						class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item">
-					<img src="../img/indeximg2.jpg" class="d-block w-100" alt="...">
+					<img src="../img/home1.jpg" style="height: 500px"
+						class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item">
-					<img src="../img/indeximg3.jpg" class="d-block w-100" alt="...">
-				</div>
-				<div class="carousel-item">
-					<img src="../img/indeximg4.jpg" class="d-block w-100" alt="...">
-				</div>
-				<div class="carousel-item">
-					<img src="../img/indeximg5.jpg" class="d-block w-100" alt="...">
+					<img src="../img/home2.jpg" style="height: 500px"
+						class="d-block w-100" alt="...">
 				</div>
 			</div>
 
@@ -137,8 +100,62 @@
 				<span class="visually-hidden">Next</span>
 			</button>
 		</div>
+		<div class="card text-dark bg-light mb-3 border-dark"
+			style="width: 200px;"></div>
+
+		<br>
 
 	</div>
+	<script src="../Script/DateFormat.js"></script>
+	<script type="text/javascript">
+	
+$.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-5497E4A6-E23E-4174-B879-FB99E1314164&limit=5&format=JSON&locationName=臺中市', function(req, res) {
+
+    console.log("三十六小時天氣預報: " + req.records.datasetDescription) //三十六小時天氣預報
+    var data = req.records;
+    var location = data.location[0].locationName; //地點
+    var noon = data.location[0].weatherElement[0].time[0];
+    var night = data.location[0].weatherElement[0].time[1];
+    var morning = data.location[0].weatherElement[0].time[2];
+    var Weatherpattern = data.location[0].weatherElement[0].elementName;
+    var lowtemp = data.location[0].weatherElement[2];
+    var toptemp = data.location[0].weatherElement[4];
+
+
+    var nowtime = new Date();
+    console.log(new Date(noon.startTime))
+    console.log(new Date(noon.endTime))
+    console.log(new Date(night.startTime))
+    console.log(new Date(night.endTime))
+    console.log(new Date(morning.startTime))
+    console.log(new Date(morning.endTime))
+
+	
+
+
+    $('.card').append(`
+            <img src="../img/day/${'${noon.parameter.parameterName}'}.svg" class="card-img-top" style="width: 85%;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${'${location}'}</h5>
+                <p class="card-text">現在時段為 :</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">目前天氣 : ${'${noon.parameter.parameterName}'}</li>
+                <li class="list-group-item">最高溫度 : ${'${toptemp.time[0].parameter.parameterName}'} ℃</li>
+                <li class="list-group-item">最低溫度 : ${'${lowtemp.time[0].parameter.parameterName}'} ℃</li>
+            </ul>
+           
+    `);
+    
+    
+
+    setInterval(function() {
+        $('.card-text').text(new Date());
+    }, 1000)
+})
+</script>
+
+
 
 </body>
 

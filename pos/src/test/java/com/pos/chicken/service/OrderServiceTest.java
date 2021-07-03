@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.pos.chicken.domain.EmpBean;
 import com.pos.chicken.domain.OrderBean;
-import com.pos.chicken.repository.OrderRepository;
 import com.pos.chicken.repository.OrderServiceRepository;
 
 @SpringBootTest
@@ -17,8 +16,6 @@ public class OrderServiceTest {
 	
 	@Autowired
 	private OrderServiceRepository orderService;
-	@Autowired
-	private OrderRepository dao;
 	
 	
 	//@Test
@@ -31,11 +28,11 @@ public class OrderServiceTest {
 	public void insert() {
 		OrderBean bean = new OrderBean();
 		EmpBean empbean = new EmpBean();
-		empbean.setEmpID("Emp003");
-//		bean.setOrderId(3);
+		empbean.setEmpID("Emp002");
+		bean.setOrderId(3);
 		bean.setEmpfk(empbean);
 		bean.setOrderDate(new Date());
-		bean.setOrderMark("測試自己增加ID");
+		bean.setOrderMark("測試");
 		orderService.orderInsert(bean);
 	}
 

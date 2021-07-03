@@ -33,10 +33,10 @@ public class OrderBeanTest {
 		empbean.setEmpID("Emp003");
 		
 		
-		
-		
 		bean.setOrderId(2);
 		bean.setEmpfk(empbean);
+		
+		
 		bean.setOrderDate(new Date());
 		bean.setOrderMark("nice try");
 		
@@ -45,7 +45,7 @@ public class OrderBeanTest {
 		
 		
 	}
-	//@Test
+	@Test
 	public void oderdetailInsert() {
 		OrderDetailBean odbean = new OrderDetailBean();
 		

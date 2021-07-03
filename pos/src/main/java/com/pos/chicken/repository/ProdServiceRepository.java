@@ -46,11 +46,10 @@ public class ProdServiceRepository {
 			bean.setProdCategory(prodCategory);
 			bean.setProdCount(prodCount);
 			byte[] newprodImg= prodImg.getBytes();
-			bean.setProdImg(newprodImg);
+//			bean.setProdImg(newprodImg);
 		
 			if(bean!=null && bean.getProdID()!=null) {
 				if(!prodao.existsById(bean.getProdID())) {
-					
 					result=prodao.save(bean);
 			}else {
 				result=prodao.save(bean);
@@ -63,5 +62,10 @@ public class ProdServiceRepository {
 		}
 		return null;
 	}
+	
+	public Integer selectCount(Integer prodID) {
+		return prodao.findById(prodID).get().getProdCount();
+	}
+	
 	
 }

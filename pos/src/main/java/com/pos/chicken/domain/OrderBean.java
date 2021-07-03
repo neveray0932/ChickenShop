@@ -14,9 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 import lombok.Data;
 
@@ -26,9 +25,10 @@ import lombok.Data;
 public class OrderBean {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="Order_ID")
 	private Integer orderId;
+	@JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd",timezone="GMT+8")
 	@Column(name="Order_Date")
 	private java.util.Date orderDate;
 	@Column(name="Order_mark")
