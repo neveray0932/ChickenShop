@@ -68,8 +68,7 @@
 			</ul>
 
 			<ul class="list-unstyled CTAs">
-				<li><a href="" class="download">登出</a></li>
-
+				<li><a href="<c:url value='/back-pages/logout.controller' />" class="download">登出</a></li>
 			</ul>
 		</nav>
 
@@ -175,7 +174,12 @@
 				// (dataArray);
 				console.log(result)
 				var options = {
-					title: '十大暢銷產品',
+					animation: {  //載入動畫
+			            startup: true,
+			            duration: 1000,
+			            easing: 'out',
+			        },
+					title: '訂單銷售',
 					width:900,
 					height:600,
 				};

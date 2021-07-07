@@ -17,11 +17,7 @@ public class PublicController {
 		return "/font-pages/home";
 	}
 
-	@RequestMapping(path = { "/pages/menu1.page" })
-	public String menu1() {
-		return "/font-pages/menu/menu1";
-	}
-	
+	//產品menu
 	@RequestMapping(path = { "/pages/menu.page" })
 	public String menu() {
 		return "/font-pages/menu/menu";
@@ -57,24 +53,19 @@ public class PublicController {
 		return "/back-pages/login";
 	}
 	
-	// 後台
+	// 後台 內嵌頁
 	@RequestMapping(path = { "/back-pages/includeBackpage.page" })
 	public String includeBackpage() {
 		return "/back-pages/includeBackpage";
 	}
 	
-	
+	//後台首頁
 	@RequestMapping(path = { "/back-pages/bakeIndex.page" })
 	public String bakeIndex() {
 		return "/back-pages/bakeIndex";
 	}
 	
 	
-	//意見反饋
-	@RequestMapping(path = { "/back-pages/feedback.page" })
-	public String feedback() {
-		return "/back-pages/feedback";
-	}
 	
 	//員工
 	@RequestMapping(path = { "/pages/emp.page" })
@@ -88,15 +79,23 @@ public class PublicController {
 		return "/back-pages/shop/orderCheck";
 	}
 
-//	@RequestMapping(path = { "/pages/menutestAjaxpage" })
-//	public String MenuTestAjax() {
-//		return "/back-pages/prod/menutest";
-//	}
-
 	//產品管理
 	@RequestMapping(path = { "/pages/menutestJava.page" })
-	public String MenuTestJava() {
+	public String selectProd() {
 		return "/back-pages/prod/menutest1";
+	}
+	
+	//產品顯示
+	@RequestMapping(path = { "/pages/display.page" })
+	public String display() {
+		
+		return "/back-pages/prod/menutest1";
+	}
+	
+	//產品前台預覽
+	@RequestMapping(path = { "/pages/menu2.page" })
+	public String menu2() {
+		return "/font-pages/menu/menu2";
 	}
 	
 	//報表管理 /訂單銷售
@@ -116,4 +115,5 @@ public class PublicController {
 		public String reportSale3() {
 			return "/back-pages/report/reportSale3";
 		}
+		
 }

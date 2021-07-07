@@ -20,6 +20,8 @@
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            
+
         </head>
         <style>
             .box {
@@ -153,7 +155,7 @@
 						style="text-decoration: none; color: orange;" href="#">CHICKENSHOP</a>
 					</span>加盟專線：0952-123456
 					信箱：
-                    <a href="mailto:mongagtw@gmail.com">roy55662233@gmail.com</a>
+                    <a style="" href="mailto:mongagtw@gmail.com">roy55662233@gmail.com</a>
                     &emsp;&emsp;
                     <a  href="<c:url value="/pages/login.page"/>">後台登入</a>
                     

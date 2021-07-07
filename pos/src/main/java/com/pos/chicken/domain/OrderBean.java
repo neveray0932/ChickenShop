@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -25,9 +26,10 @@ import lombok.Data;
 public class OrderBean {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "Order_ID")
 	@Column(name="Order_ID")
 	private Integer orderId;
+	
 	@JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd",timezone="GMT+8")
 	@Column(name="Order_Date")
 	private java.util.Date orderDate;
@@ -49,8 +51,6 @@ public class OrderBean {
 	)
 	
 	private EmpBean empfk;
-	
-	
 
 	@Override
 	public String toString() {
@@ -58,15 +58,4 @@ public class OrderBean {
 				+ "]";
 	}
 	
-//	@ManyToOne
-//	@JoinColumn(
-//			name="OrderD_id",
-//			referencedColumnName = "OrderD_id",
-//			insertable=false,updatable=false
-//	)
-//	
-//	private OrderDetailBean orderdetail;
-	
-	
-
 }

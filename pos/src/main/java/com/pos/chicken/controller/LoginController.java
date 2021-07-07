@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pos.chicken.domain.EmpBean;
@@ -23,7 +24,7 @@ public class LoginController {
 	
 	@Autowired EmpRepository empdao;
 	
-	@RequestMapping(path = {"/back-pages/login.controller"})
+	@PostMapping(path = {"/back-pages/login.controller"})
 	public String method(String empId,  //前端給我的empId
 			String password,			//前端給我的password
 			Model model,

@@ -4,7 +4,7 @@
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,12 +15,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
        
-
-<!--     <link rel="stylesheet" href="../mycss.css"> -->
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     </head>
 
     <body>
@@ -32,44 +31,12 @@
                     <li><span class="text-muted">Menu </span></li>
                     <li><span class="text-muted">About me</span></li>
                 </ul>
-
-
             </div>
         </div>
 
-        <%-- <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
-            <a class="navbar-brand" href="login.html">大專雞排戰隊</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="./menu.html"><span class="sr-only">Menu </span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-            </div>
-        </nav> --%>
-
-
-
-
-        <form class="mylogin" action="<c:url value="/back-pages/login.controller" />" method="get">
+        <form class="mylogin" action="<c:url value="/back-pages/login.controller" />" method="post">
             <!-- 上面員工小標籤 -->
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-
-            </ul>
+            <ul class="nav nav-tabs" id="myTab" role="tablist"></ul>
             
             <!-- 員工登入的帳號密碼 -->
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -77,28 +44,41 @@
                 
                 <label>帳號: </label> <input type="text"  name="empId" value="${param.empId}" >
                 <label>密碼: </label><input type="password"  name="password" value="${param.password}">
-                <input  type="submit" name="" value="登入" style="background-color:#FFECC9;" >
+                <input  type="submit" name="" value="登入" style="background-color:#FFECC9;" onclick="Swal.fire()">
             </div>
 
-
-            
-
-
-
-
         </form>
+<script type="text/javascript">
 
 
-
-
+let timerInterval
+Swal.fire({
+  title: 'Auto close alert!',
+  html: 'I will close in <b></b> milliseconds.',
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    timerInterval = setInterval(() => {
+      const content = Swal.getHtmlContainer()
+      if (content) {
+        const b = content.querySelector('b')
+        if (b) {
+          b.textContent = Swal.getTimerLeft()
+        }
+      }
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('I was closed by the timer')
+  }
+})
+</script>
     </body>
-    <script>
-        // var myModal = document.getElementById('myModal')
-        // var myInput = document.getElementById('myInput')
-
-        // myModal.addEventListener('shown.bs.modal', function () {
-        //     myInput.focus()
-        // })
-    </script>
-
+    
 </html>

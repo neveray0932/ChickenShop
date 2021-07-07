@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pos.chicken.domain.EmpBean;
+import com.pos.chicken.domain.EmployeeHour;
+import com.pos.chicken.domain.MonthPrice;
 import com.pos.chicken.domain.OrderBean;
 import com.pos.chicken.domain.OrderDetailBean;
 import com.pos.chicken.domain.ProdBean;
@@ -110,8 +112,18 @@ public class ProdRestAPI {
 //		System.out.println(id);
 //	}
 	
+	//營業額
+	@GetMapping("/monthprice")
+	public List<MonthPrice> monthprice() {
+		List<MonthPrice> result= odSerive.selectMonthPrice();
+		return result;
+	}
 	
-
-				
+	//總時數
+	@GetMapping("/totaltime")
+	public List<EmployeeHour> totaltime() {
+		List<EmployeeHour> result= EmpJpa.selectEmployeeHour();
+		return result;
+	}
 	
 }

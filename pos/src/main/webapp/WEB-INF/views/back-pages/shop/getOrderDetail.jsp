@@ -68,8 +68,7 @@
 			</ul>
 
 			<ul class="list-unstyled CTAs">
-				<li><a href="" class="download">登出</a></li>
-
+				<li><a href="<c:url value='/back-pages/logout.controller' />" class="download">登出</a></li>
 			</ul>
 		</nav>
 
@@ -90,9 +89,8 @@
 			<div style="text-align : center;">
 			
 		
-			<%-- <form action="<c:url value="/secure/shopcar.controller" />" method="get"> --%>
-			<%-- 	<label>訂單日期</label> &ensp;<input type="date"><span>&ensp; 到&ensp; <span><input type="date"> &ensp; <button class="btn btn-success">搜尋</button> --%>
 			
+			<a href="<c:url value="/shop/orderCheck.page" />"><button type="button" class="btn btn-secondary">返回</button></a>
 			<table id="orderT" class="table table-striped" style="margin-top: 25px;"  >
 				<thead style="border:2px solid black">
 					<tr  >

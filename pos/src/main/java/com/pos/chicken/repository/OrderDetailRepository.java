@@ -1,12 +1,13 @@
 package com.pos.chicken.repository;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.pos.chicken.domain.MonthPrice;
 import com.pos.chicken.domain.OrderDetailBean;
 import com.pos.chicken.domain.OrderDetailBean.ConfigId;
 
@@ -38,4 +39,11 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetailBean, Co
 	 @Modifying
 	 @Query(value ="select * FROM orderdetail WHERE Order_ID = ?1 ", nativeQuery = true)
 	 List<OrderDetailBean> findByOrderAll(Integer orderId);
+	 
+	 
+	 @Transactional
+	  @Query("SELECT NEW com.pos.chicken.domain.MonthPrice(SUM(odt.orderPrice), MONTH(odt.orderfk.orderDate)) FROM OrderDetailBean odt"
+	    + " JOIN odt.orderfk GROUP BY MONTH(odt.orderfk.orderDate) "
+	    )
+	  List<MonthPrice> selectMonthPrice();
 }

@@ -24,7 +24,6 @@ public class LogoutController {
 			HttpSession session) {		
 		
 		session.removeAttribute("emp");
-		System.out.println("removeAttribute session:"+session.getId());
 		
 		return "/font-pages/home";
 		

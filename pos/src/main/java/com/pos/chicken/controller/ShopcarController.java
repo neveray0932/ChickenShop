@@ -43,8 +43,7 @@ public class ShopcarController {
     
 	@Autowired
 	private ProdRepository prodDao;
-	
-	//orderDetailRepository
+
 	@Autowired
 	private OrderDetailRepository orderDdao;
 
@@ -65,13 +64,6 @@ public class ShopcarController {
 			String mailname
 			) throws MessagingException {
 		
-//		System.out.println(mailname);
-//		System.out.println("我是Name="+prodName);  
-//		System.out.println("我是prodID="+prodID);  
-//		System.out.println("我是prodCount="+prodCount);  
-//		System.out.println("我是prodBean="+prodBean);  
-//		System.out.println("我是odBean="+odBean);  
-//		System.out.println("我是orderbean="+orderbean);  
 		
 		if (orderInsert != null && orderInsert.equals("Insert")) {
 			int i=0;
@@ -86,151 +78,104 @@ public class ShopcarController {
 				prodDao.save(prodBean);
 				
 			}
+			
 			//員工
-			//			model.addAttribute("test3", prodBean.getProdName());
-			//System.out.println("我是prodName="+prodBean.getProdName());
-			System.out.println("我是test2="+prodBean.getProdPrice()); 
 			EmpBean empbean = new EmpBean();
 			empbean.setEmpID("Emp001");
 			
 			//訂單主表
-//			orderbean.setOrderId(7);
 			orderbean.setEmpfk(empbean);
 			orderbean.setOrderDate(new Date());
 			orderbean.setOrderMark("我是備註");
-			
-//			orderbean.setOrderdetails(null);
-//			orderbean.setOrderId(null);
 			orderService.save(orderbean);
-//			System.out.println("print:"+orderbean);
-			
 			model.addAttribute("test", orderbean);
 			int k=0;
+			String str = "";
 			for(Integer prodInt : prodID) {
 				k++;
 				//訂單明細odBean
-				odBean.setOrderId( orderbean.getOrderId() );	//1				1
-				odBean.setOrderCount(prodCount[k-1]);  ;			//總數6			3
-				odBean.setOrderUnitsprice( prodDao.getById(prodInt).getProdPrice() ); 	 //單價	
-				odBean.setOrderPrice( prodCount[k-1]*prodDao.getById(prodInt).getProdPrice() ); //總價價
-				odBean.setProdfk( prodDao.getById(prodInt) );						//2天使雞排		1惡魔雞排
+				odBean.setOrderId( orderbean.getOrderId() );	
+				odBean.setOrderCount(prodCount[k-1]);
+				odBean.setOrderUnitsprice( prodDao.getById(prodInt).getProdPrice() );
+				odBean.setOrderPrice( prodCount[k-1]*prodDao.getById(prodInt).getProdPrice() ); 
+				odBean.setProdfk( prodDao.getById(prodInt) );	
 
-//				orderDdao.save(odBean);
-				
 				orderDdao.addOrderToDetail(orderbean.getOrderId(),
-						prodDao.getById(prodInt).getProdID(), prodCount[k-1], 
-						prodCount[k-1]*prodDao.getById(prodInt).getProdPrice(),
-						prodDao.getById(prodInt).getProdPrice());
+				prodDao.getById(prodInt).getProdID(), prodCount[k-1], 
+				prodCount[k-1]*prodDao.getById(prodInt).getProdPrice(),
+				prodDao.getById(prodInt).getProdPrice());
 				
-				
+				System.out.println(orderbean.getOrderId());
+				System.out.println(prodDao.getById(prodInt).getProdName());
+				System.out.println(prodCount[k-1]);
+				System.out.println(prodDao.getById(prodInt).getProdPrice());
+				//字串累加，format參數
+				str+=String.format(
+		  		  		      
+		  		  		  "    <tr><td style=' border: 1px solid black; height: 75px; text-align:center;'>"+orderbean.getOrderId()+"</td>\r\n"
+		  		  		+ "        <td style=' border: 1px solid black; height: 75px; text-align:center;'> %s </td>\r\n"
+		  		  		+ "        <td style=' border: 1px solid black; height: 75px; text-align:center;'> %d </td>\r\n"
+		  		  		+ "        <td style=' border: 1px solid black; height: 75px; text-align:center;'> %d </td>\r\n"
+		  		  		+ "    </tr>"
+		  		  		, prodDao.getById(prodInt).getProdName(),prodCount[k-1],prodDao.getById(prodInt).getProdPrice());
+				//表格開頭+身體內容(str)
+				String fixed="<html><body><table style='border-collapse: collapse;border: 1px solid black;'>\r\n"
+						+ "    <tr style=' border: 1px solid black; text-align:center;'>\r\n"
+						+ "        <td style=' border: 1px solid black;' colspan='4'>\r\n"
+						+ "            <img style='border-radius: 87px;' src='https://i.ibb.co/ccC66TZ/Logo.jpg' alt='Logo'>\r\n"
+						+ "            <h2 style='text-align:center; font-weight:bold;'>POS雞大專戰隊</h2>\r\n"
+						+ "        </td>\r\n"
+					    + "   </tr> "
+						
+		  		  		 
+		  		  		+ "    <tr style=' border: 1px solid black;'>\r\n"
+		  		  		+ "        <th style=' border: 1px solid black; background-color:pink; width: 200px; height: 100px;'>訂單號碼 </th>\r\n"
+		  		  		+ "        <th style=' border: 1px solid black; background-color:pink; width: 200px; height: 100px;'>產品名稱 </th>\r\n"
+		  		  		+ "        <th style=' border: 1px solid black; background-color:pink; width: 200px; height: 100px;'>訂單數量 </th>\r\n"
+		  		  		+ "        <th style=' border: 1px solid black; background-color:pink; width: 200px; height: 100px;'>訂單金額 </th>\r\n"
+		  		  		+ "    </tr>"
+		  		  		+str
+		  		  		+ "</table></body></html>"
+		  		  		;
+				//當"K變數"等於產品長度時才寄信
+				if(k==prodID.length) {
+					//如果沒填email也可以進行MVC
+					if(mailname!="") {
+					sendSimpleMessage(mailname,fixed);
+					}	
+				};
 			}
 			
-			//使用jpa sql語句方法
-			Object[] aa = orderDdao.findByOrderAll(odBean.getOrderId()).toArray();
-			model.addAttribute("test2", aa);
+			Object[] odfindall = orderDdao.findByOrderAll(odBean.getOrderId()).toArray();
+			model.addAttribute("test2", odfindall);
 			
 //			印出總金額
 			Object totalprice =orderDetailServiceRepository.orderPrice(odBean.getOrderId());
 			model.addAttribute("test4", totalprice);
-			System.out.println("印出東西:"+orderDetailServiceRepository.orderPrice(odBean.getOrderId()));
 //			印出總數量
 			Object ordercoint =orderDetailServiceRepository.ordercoint(odBean.getOrderId());
 			model.addAttribute("test5", ordercoint);
-			System.out.println("印出東西:"+orderDetailServiceRepository.ordercoint(odBean.getOrderId()));
-//			印出商品內容
-//			System.out.println("印商品名稱:"+orderDetailServiceRepository.orderprod(odBean.getOrderId()));
-			
-			
-//			Object list = orderDetailServiceRepository.orderprod(odBean.getOrderId()).toString();
-			
-			
-			
-			
-			
-			
-			
-//			for(Object obj :list) {
-//				Object[] array = (Object[]) obj;
-//				System.out.println("aa="+array[0]+":"+array[1]);;
-//			}
-			
-//			List<OrderDetailBean> bb = orderDdao.findByOrderPrice(odBean.getOrderPrice());
-//			System.out.println(bb);
-//			model.addAttribute("test4", bb);
-//			
-//			System.out.println("AAA"+aa[0]);
-//			for(Object pname : aa ) {
-//				System.out.println("FFFF"+pname);
-//			}
-
-			sendSimpleMessage(prodName,mailname,orderbean);
-			
-
 		}
-
 		return "/font-pages/shop/order";
 	}
 
 
-	public void sendSimpleMessage(String[] prodName,
-  	      String to, OrderBean orderbean ) throws MessagingException {
-		System.out.println(prodName);
-		String Prodhql = "select p.prod_name from prod p, orderdetail o where p.Prod_ID = o.Prod_ID and o.order_id = 13";
-  	        SimpleMailMessage message = new SimpleMailMessage(); 
-  	
-		MimeMessage mimeMessage = emailSender.createMimeMessage(); 
-  		  MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage,"utf-8");
-  		  
-  		  messageHelper.setTo(to);
-  		  messageHelper.setSubject("springboot透過 Gmail 去發信");
-
-		messageHelper.setText("<html><body><table style=\"border-collapse: collapse;border: 1px solid black;\">\r\n"
-  		  		+ "\r\n"
-  		  		+ "    <tr style=\" border: 1px solid black;\">\r\n"
-  		  		+ "        <th style=\" border: 1px solid black; background-color:pink; width: 200px; height: 100px;\">訂單號碼 </th>\r\n"
-  		  		+ "        <th style=\" border: 1px solid black; background-color:pink; width: 200px; height: 100px;\">產品名稱 </th>\r\n"
-  		  		+ "        <th style=\" border: 1px solid black; background-color:pink; width: 200px; height: 100px;\">訂單總數量 </th>\r\n"
-  		  		+ "        <th style=\" border: 1px solid black; background-color:pink; width: 200px; height: 100px;\">訂單總金額 </th>\r\n"
-  		  		+ "    </tr>\r\n"
-  		  		+ "\r\n"
-  		  		+ "    <tr>\r\n"
-  		  		+ "        <td style=\' border: 1px solid black; height: 75px;\'>"+orderbean.getOrderId()+"</td>\r\n"
-  		  		+ "        <td style=\" border: 1px solid black; height: 75px;\">"+"天使雞排"+" </td>\r\n"
-  		  		+ "        <td style=\" border: 1px solid black; height: 75px;\">"+orderDetailServiceRepository.ordercoint(orderbean.getOrderId()).toString()+" </td>\r\n"
-  		  		+ "        <td style=\" border: 1px solid black; height: 75px;\">"+orderDetailServiceRepository.orderPrice(orderbean.getOrderId()).toString()+" </td>\r\n"
-  		  		+ "    </tr>\r\n"
-  		  		+ "</table></body></html>", true);
-
-  		  
-  		emailSender.send(messageHelper.getMimeMessage());
-  		
-//  		System.out.println(orderDdao.findByOrderAll(orderbean.getOrderId()));
-  		
-  		
-  		
-  	    }
+	public void sendSimpleMessage(String to, String text ) throws MessagingException {
+			MimeMessage mimeMessage = emailSender.createMimeMessage(); 
+	  		MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage,"utf-8");
+	  		messageHelper.setTo(to);
+	  		messageHelper.setSubject("springboot透過 Gmail 去發信");
+	  		messageHelper.setText(text, true);
+	  		emailSender.send(messageHelper.getMimeMessage());
+	  	    }
 
 	
 	@GetMapping("/oderdetail/{id}")
 	public String findByPrimaryKey(@PathVariable("id") Integer id ,Model model) {
-//		System.out.println("id = " + id);
 		OrderDetailBean bean1 = new OrderDetailBean();
 		bean1.setOrderId(id);
 		List<OrderDetailBean> a = orderDdao.selectOrderToDetail(id);
-//		System.out.println(a);
 		model.addAttribute("select", a);
-//		List<OrderDetailBean> result = orderDService.oderdetailSelect(bean1);
-//		System.out.println("結果1"+result);
-		
-//		Optional<OrderDetailBean> result2 = orderDdao.findById(id);
-//		System.out.println("結果2"+result2);
-//		if(result != null && !result.isEmpty()) {
-//			//success 200
-//			//ResponseEntity<OrderDetailBean> entity = ResponseEntity.ok(result.get(0));
-//			model.addAttribute("select",result);
-//			return "/back-pages/shop/getOrderDetail";
-//			}	
-		
 		return "/back-pages/shop/getOrderDetail";
 	}
 }

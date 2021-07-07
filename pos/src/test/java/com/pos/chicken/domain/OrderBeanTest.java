@@ -26,6 +26,11 @@ public class OrderBeanTest {
 	private OrderDetailRepository oddao;
 	
 	@Test
+	public void test() {
+		System.out.println("我在這"+oddao.selectMonthPrice());
+	}
+	
+	//@Test
 	public void insert() {
 		OrderBean bean = new OrderBean();
 		
@@ -45,7 +50,7 @@ public class OrderBeanTest {
 		
 		
 	}
-	@Test
+	//@Test
 	public void oderdetailInsert() {
 		OrderDetailBean odbean = new OrderDetailBean();
 		

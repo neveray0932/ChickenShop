@@ -68,8 +68,7 @@
 			</ul>
 
 			<ul class="list-unstyled CTAs">
-				<li><a href="" class="download">登出</a></li>
-
+				<li><a href="<c:url value='/back-pages/logout.controller' />" class="download">登出</a></li>
 			</ul>
 		</nav>
 
@@ -89,13 +88,7 @@
 			<%-- 訂單紀錄內容 --%>
 			<div style="text-align : center;">
 			
-			<div >
-				<%-- <form action="<c:url value="/secure/shopcar.controller" />" method="get"> --%>
-				<label>訂單日期</label> &ensp;
-				<input type="date" id="orderdate"><span> &ensp; 到 &ensp; <span>
-				<input type="date" id="orderdate1"> &ensp; 
-				<button type="submit" id="a" class="btn btn-success" onclick="search()">搜尋</button>
-			</div>
+			
 
 			<table id="orderT" class="table table-striped" style="margin-top: 25px;"  >
 				<thead style="border:2px solid black">
@@ -122,28 +115,23 @@
 
 
 	<script type="text/javascript">
-			
 		$(document).ready(function() {
-			// a();
-			// 右側導覽按鈕
 			$('#sidebarCollapse').on('click', function() {
 				$('#sidebar').toggleClass('active');
 				$(this).toggleClass('active');
 			});
-				
 			var data=[{"data":""}];
 			console.log(data);
 			$.get('/chicken/public/api/oderdetail',function(req,res){
-				
 				var table =$('#orderT').DataTable({
 					ajax:{
-							url:'/chicken/public/api/oderdetail',
+							url:'/chicken/public/api/oderds',
 							dataSrc:''
     					},
 						columns:[
         							{ "data": "orderId" }, //第一欄使用data中的name
-        							{ "data": "orderfk.orderDate" }, //第二欄使用data中的age
-        							{ "data": "orderfk.orderMark" }, //第二欄使用data中的age
+        							{ "data": "orderDate" }, //第二欄使用data中的age
+        							{ "data": "orderMark" }, //第二欄使用data中的age
 									{ data: 'orderId',orderable: false, // 禁用排序
 									render: function (data, type, row, meta) { 	
 										return '<a href="/chicken/oderdetail/'+ data+  ' " > <button class="btn btn-info btn-sm" data-id=' + data + '><i class="fa fa-pencil"></i>查詢</button> </a>'
@@ -152,59 +140,8 @@
 									}
     							]
 				});
-					// columns: [
-					// 	{ data: 'orderId' },
-					// 	{ data: 'orderfk.orderDate' },
-					// 	{ data: 'orderfk.orderMark' },
-					// 	{ data: 'orderId',orderable: false, // 禁用排序
-					// 	render: function (data, type, row, meta) { 	 
-					// 		return '<a href="/chicken/oderdetail/'+ data+  ' " > <button class="btn btn-info btn-sm" data-id=' + data + '><i class="fa fa-pencil"></i>查詢</button> </a>'
-					// 						// + '<button class="btn btn-danger btn-sm" data-id=' + data + '><i class="fa fa-trash-o"></i>刪除</button>'
-					// 			}
-					// 	}]
-					// })
+					
 			})
-			
-
-			//後面搜尋的
-			
-				// $("#a").on("click",function(){
-					
-				// 	var date1=$('#orderdate').val();	
-				// 	var date2=$('#orderdate1').val();
-				// 	var data=[{"data":""}];
-				// 	// $.get(`/chicken/public/api/date/${'${date1}'}/${'${date2}'}`,function(req,res){
-				// 		// data[0].data=req
-				// 		// console.log(data);
-				// 		var table = $('#orderT').DataTable({
-				// 			ajax:{
-				// 			url:`/chicken/public/api/date/${'${date1}'}/${'${date2}'}`,
-				// 			dataSrc:''
-    			// 		},
-				// 			columns: [
-				// 				{ data: 'orderId' },
-				// 				{ data: 'orderfk.orderDate' },
-				// 				{ data: 'orderfk.orderMark' },
-				// 				{ data: 'orderId',orderable: false, // 禁用排序
-				// 				render: function (data, type, row, meta) { 	
-				// 						return '<a href="/chicken/oderdetail/'+ data+  ' " > <button class="btn btn-info btn-sm" data-id=' + data + '><i class="fa fa-pencil"></i>查詢</button> </a>'
-				// 									// + '<button class="btn btn-danger btn-sm" data-id=' + data + '><i class="fa fa-trash-o"></i>刪除</button>'
-				// 						}
-				// 				}
-				// 			]
-						
-				// 		})
-					// });
-					
-				// });		
-			
-		
-			// });	
-			
-			// function search(){
-   			// table.ajax.reload();
-   			// return false;
-   			// }
 		});
 
 	</script>

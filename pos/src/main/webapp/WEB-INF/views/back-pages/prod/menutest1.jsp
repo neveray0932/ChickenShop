@@ -105,8 +105,7 @@
 			</ul>
 
 			<ul class="list-unstyled CTAs">
-				<li><a href="" class="download">登出</a></li>
-
+				<li><a href="<c:url value='/back-pages/logout.controller' />" class="download">登出</a></li>
 			</ul>
 		</nav>
 
@@ -141,10 +140,10 @@
                     <label for="floatingInput">產品名稱:</label>
                 </div>
                 <div class="form-floating mb-3">
-                 <select class="form-select" aria-label="Default select example" name="prodCategory">
-         			<option selected>種類</option>
-         			<option value="${param.prodCategory}">雞排</option>
-         			<option value="${param.prodCategory}">飲料</option>
+                 <select class="form-select" aria-label="Default select example" name="prodCategory" >
+         			<option selected value="${param.prodCategory}"></option>
+         			<option >雞排</option>
+         			<option >飲料</option>
   				</select>
        				<label for="floatingInput">產品種類:</label>
                     
@@ -173,6 +172,7 @@
             </form>
             <div id="message">
                 <p>${msg1}</p>
+                <p>${msg}</p>
                 <p id="err">${error}</p>
             </div>
         </div>

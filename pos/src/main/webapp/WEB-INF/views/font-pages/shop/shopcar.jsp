@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ include file="../../include.jsp"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,17 +11,10 @@
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 	<title>ShopCar</title>
-	<!-- <link rel="stylesheet" href="../css/mycss.css"> -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
 	<!-- CSS only -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<!-- JavaScript Bundle with Popper -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 	<!-- jQuery -->
-	<script src="../Script/jquery-3.4.1.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/collect.js/4.28.7/collect.js"></script>
 	<style>
 		th, td {
@@ -31,22 +24,6 @@
 </head>
 
 <body>
-	<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
-		<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark" style="width: 80%; margin: auto;">
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<a class="navbar-brand" href="<c:url value="/pages/home.page"/>"> <img
-					src="../img/LOGO.png" alt="logo" width="50px">雞排點餐系統
-				</a>
-				<ul class="navbar-nav">
-					<li class="nav-item active"><a class="nav-link"
-						href="<c:url value="/pages/menu.page"/>"> <span>餐點菜單</span>
-					</a></li>
-				</ul>
-			</div>
-		</nav>
-	</nav>
-
-
 	<br>
 	<br>
 	<div id="show">
@@ -64,36 +41,9 @@
 				</thead>
 
 				<tbody id="tbodylist">
-					<%-- <tr>
-						<th scope="row">1 
-							<input id="inputID" class="detailName" name="prodID" value="3" type="hidden">
-						</th>
-						
-						<td> 
-							<label id="labs">起司雞排</label> 
-							<input id="inputName" class="detailName" name="prodName" value="${param.prodName}" type="hidden">
-						</td>
-
-						<td>
-							<span>70</span> <input class="detailName" name="prodPrice" value="${param.prodPrice}" type="hidden">
-						</td>
-
-						<td> 
-							<button type="button" class="btn btn-dark">+</button>
-							<span id="sp2">4</span> <input id="inputCount2" class="detailName" name="prodCount" value="6" type="hidden">
-							<button type="button" class="btn btn-dark">-</button>
-						</td>
-						
-						<td>
-							<span>$70</span> 
-							<input class="detailName" name="OrderTotail" value="${param.prodTotail}" type="hidden">
-						</td>
-					</tr> --%>
 				</tbody>
-
 					<tr>
-						<th>
-						</th>
+						<th></th>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -103,8 +53,6 @@
 						<button class="btn btn-primary" type="submit" name="orderInsert" value="Insert">確認訂單</button>
 						</td>
 					</tr>
-					
-					
 			</table>
 			<br><br>
 			<div style="position:relative; left:1100px;">
@@ -121,7 +69,6 @@
         $("#cartbottom").width("80%").css("margin", "auto").css('margin-top', '20px');
 
         var test = JSON.parse(localStorage.getItem('items'));
-        // console.log(test) 
 		var collection = collect(test);  
   
 		var find_sum = collection.sum('ptatol');  
@@ -130,11 +77,7 @@
 
         var temp = 0;
         $.each(test, function(index, obj){
-			console.log(obj.pprice)
-			console.log(obj.ptotal)
 			 var total= JSON.parse( localStorage.getItem('total'))
-			
-			// console.log(total);
         	 $("#tbodylist").append(
                      `   <tr>
 					 	<input id="inpid${'${index + 1}'}" name="prodID" class="inpid" value="${'${obj.pid}'}" type="hidden">
@@ -222,13 +165,9 @@
     			alert('NO');
     			localStorage.removeItem('items');
     			$('#tbodylist>tr').empty(); 
-//     			$('#gotocartable>tr').empty(); 
     		}
     	});
-
-
-
-
+		
 		function crazy2() {
                     var a = 0;
                     var money = JSON.parse(localStorage.getItem("items"));
@@ -251,14 +190,11 @@
 			  var c = document.getElementsByClassName('cart_result');
 		
 			$.each(test,function(index,obj){
-					// console.log("in:"+success)
-					// console.log(obj.pid)
 					console.log(c[index].id)
 					var pid = $(`${'#inpid${index+1}'}`).val();
 					var name = $(`${'#prodname${index+1}'}`).text();
 					var num =$(`${'#cart_num${index+1}'}`).text();
 					var price = $(`${'#cartprice${index+1}'}`).text()
-	//			 	xvar price = document.getElementById('cart_price0').innerText;
 					temp[index]={
 					pid:`${'${pid}'}`, 
 					pname:`${'${name}'}`,
@@ -274,19 +210,10 @@
         function sum(c, d) {return e = parseInt(c) * d}
         function menu_click_dec(b) {if (b > 0) {return b = parseInt(b) - 1;}}
 
-
-//         function cart_click_inc(a) {
-//             return a = parseInt(a) + 1;
-//         }
-        // function sum(c, d) {return e = parseInt(c) * d}
-        
-
     })
 
-
-
 	</script>
-	<!-- 	<script src="../Script/test2.js"></script> -->
+	
 </body>
 
 

@@ -120,8 +120,7 @@
 			</ul>
 
 			<ul class="list-unstyled CTAs">
-				<li><a href="" class="download">登出</a></li>
-
+				<li><a href="<c:url value='/back-pages/logout.controller' />" class="download">登出</a></li>
 			</ul>
 		</nav>
 
@@ -178,9 +177,9 @@
        <div class="form-floating mb-3">
         <select class="form-select" aria-label="Default select example"
          name="empPostion">
-         <option selected>職位</option>
-         <option value="${param.empPostion}">經理</option>
-         <option value="${param.empPostion}">員工</option>
+         <option selected  value="${param.empPostion}">職位</option>
+         <option>經理</option>
+         <option>員工</option>
 
         </select> <label for="floatingInput">職位:</label>
        </div>

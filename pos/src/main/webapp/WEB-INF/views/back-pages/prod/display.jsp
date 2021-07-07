@@ -69,8 +69,7 @@
 			</ul>
 
 			<ul class="list-unstyled CTAs">
-				<li><a href="" class="download">登出</a></li>
-
+				<li><a href="<c:url value='/back-pages/logout.controller' />" class="download">登出</a></li>
 			</ul>
 		</nav>
 
@@ -93,7 +92,14 @@
 				
 			</nav>
             <%-- 產品管理內容 --%>
-            <h3>產品表查詢結果 : 共${fn:length(select)}  筆</h3>
+            <h3>產品表查詢結果 : 共${fn:length(select)}  筆  
+                <span>
+                    <a href="/chicken/pages/menu2.page"> 
+                        <button class="btn btn-secondary"> 預覽前台</button> 
+                    </a>
+                </span> 
+            </h3>
+            
             <c:if test="${not empty select}">
                 <table class="table table-success table-striped" id="prodtable" >
                     <thead>

@@ -11,7 +11,7 @@ public class imgconfig implements WebMvcConfigurer {
 		
 		 System.out.println("-------------------------------------------------");
 	        System.out.println("MyPicConfig测试");
-		registry.addResourceHandler("/img/**").addResourceLocations("file:C:\\JavaFramework\\eclipse-workspace\\pos-2.0\\src\\main\\resources\\static\\img\\");
+		registry.addResourceHandler("/img/**").addResourceLocations("file:C:\\JavaFramework\\eclipse-workspace\\pos-3.0\\src\\main\\resources\\static\\img\\");
 	}
 
 }
