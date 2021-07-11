@@ -161,8 +161,8 @@
 				
 				var data = new google.visualization.DataTable();
 				
-				data.addColumn('number', 'Topping');
-				data.addColumn('number', 'order');
+				data.addColumn('number', '訂單單號');
+				data.addColumn('number', '訂單金額');
 				
 				var dataArray=[];
 				$.each(result , function(i,obj){

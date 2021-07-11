@@ -110,8 +110,8 @@
 					<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">報表管理</a>
 					
 					<ul class="collapse list-unstyled" id="pageSubmenu">
-						<li><a href="#">訂單銷售</a></li>
-						<li><a href="#">菜單排名</a></li>
+						<li><a href="<c:url value="/report/reportSale.page" />">產品排行</a></li>
+						<li><a href="<c:url value="/report/reportSale2.page" />">訂單銷售</a></li>
 						<%-- <li><a href="#">考勤GDP</a></li> --%>
 					</ul>
 				
@@ -134,15 +134,10 @@
       <span> </span> <span></span> <span></span>
      </button>
      <h2>員工管理</h2>
-     <button class="btn btn-dark d-inline-block d-lg-none ml-auto"
-      type="button" data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <i class="fas fa-align-justify"></i>
-     </button>
+     
+     
 
-     <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+     <div ></div>
 
 
     </div>
@@ -151,7 +146,6 @@
    </nav>
    <%-- 員工管理內容 --%>
    <div id="empbody">
-    <h2>員工訊息表</h2>
     <form method="get" id="UploadForm"
      action="/chicken/pages/empmanage.controller">
      <table>

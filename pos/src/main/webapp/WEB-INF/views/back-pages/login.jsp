@@ -43,41 +43,18 @@
                 <h2>歡迎使用員工入口網站</h2>
                 
                 <label>帳號: </label> <input type="text"  name="empId" value="${param.empId}" >
+                
                 <label>密碼: </label><input type="password"  name="password" value="${param.password}">
-                <input  type="submit" name="" value="登入" style="background-color:#FFECC9;" onclick="Swal.fire()">
+				<label style="color:red">${error }</label>
+                <input  type="submit" name="" value="登入" style="background-color:#FFECC9;" onclick="
+                	Swal.showLoading(Swal.getDenyButton())">
             </div>
 
         </form>
 <script type="text/javascript">
 
 
-let timerInterval
-Swal.fire({
-  title: 'Auto close alert!',
-  html: 'I will close in <b></b> milliseconds.',
-  timer: 2000,
-  timerProgressBar: true,
-  didOpen: () => {
-    Swal.showLoading()
-    timerInterval = setInterval(() => {
-      const content = Swal.getHtmlContainer()
-      if (content) {
-        const b = content.querySelector('b')
-        if (b) {
-          b.textContent = Swal.getTimerLeft()
-        }
-      }
-    }, 100)
-  },
-  willClose: () => {
-    clearInterval(timerInterval)
-  }
-}).then((result) => {
-  /* Read more about handling dismissals below */
-  if (result.dismiss === Swal.DismissReason.timer) {
-    console.log('I was closed by the timer')
-  }
-})
+
 </script>
     </body>
     

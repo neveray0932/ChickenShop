@@ -29,37 +29,17 @@ public class LoginController {
 			String password,			//前端給我的password
 			Model model,
 			HttpSession session) {		
-		//接收資料
-		//驗證資料
-//				Map<String, String> errors = new HashMap<>();
-//				model.addAttribute("errors", errors);
-//				if(empId==null || empId.length()==0) {
-//					System.out.println("empId==null");
-//					errors.put("empId","username11");
-//				}
-//				if(password==null || password.length()==0) {
-//					System.out.println("password==null");
-//					errors.put("password","empPassword11");
-//				}
-//				if(errors!=null && !errors.isEmpty()) {
-//					return "/back-pages/login";
-//				}
-				
-				
-		//呼叫model		
-//				EmpBean bean = empServiceRepository.login(empId, password);
-				
 
-				//呼叫model
 				EmpBean bean = empServiceRepository.login(empId, password);
-				
 				if(bean==null) {
 					System.out.println("login failed");
+					model.addAttribute("error","輸入錯誤!請重新輸入!");
+					
 					return "/back-pages/login";
 					
 				}else {
-					
 					session.setAttribute("emp", bean);
+					model.addAttribute("error","登入成功");
 					return "/back-pages/bakeIndex";
 				}
 				

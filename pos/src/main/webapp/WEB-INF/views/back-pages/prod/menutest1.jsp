@@ -95,8 +95,8 @@
 					<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">報表管理</a>
 					
 					<ul class="collapse list-unstyled" id="pageSubmenu">
-						<li><a href="#">訂單銷售</a></li>
-						<li><a href="#">菜單排名</a></li>
+						<li><a href="<c:url value="/report/reportSale.page" />">產品排行</a></li>
+						<li><a href="<c:url value="/report/reportSale2.page" />">訂單銷售</a></li>
 						<%-- <li><a href="#">考勤GDP</a></li> --%>
 					</ul>
 				

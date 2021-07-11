@@ -369,7 +369,7 @@
 	            duration: 5000,
 	            easing: 'out',
 	        },
-			title: '訂單銷售',
+			title: '滿意度',
 			pieHole: 0.4,
 			width:600,
 			height:400,

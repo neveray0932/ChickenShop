@@ -8,36 +8,42 @@
                 <meta charset="UTF-8">
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Menu</title>
+                <title>菜單</title>
 
 
                 <style>
-                    body {
-                        background-image: url(../img/menu3.jpg);
-                        background-size: cover;
-                    }
 
-                    .menu_m1 {
-                        margin: 0 auto;
-                        width: 1500px;
-                        height: 100%;
-                    }
+                    
+
+                     .menu_m1 {
+                     
+                     	margin-bottom:100px;
+                         
+                         text-align: left;
+                         
+                   }
+                    
 
                     .menu_m2 {
-                        text-align: center;
+                     	
+                     	 
+                    	width:1500px;
+                    	margin: 0 auto 50px;
+                    	
                     }
 
                     .menu_m3 {
-                        text-align: center;
+                    	width:1500px;
+                        margin: 0 auto;
                     }
 
-                    .menu_m2>div {
-                        height: 100%;
-                    }
+/*                     .menu_m2>div { */
+/*                         height: 100%; */
+/*                     } */
 
-                    .menu_m3>div {
-                        height: 100%;
-                    }
+/*                     .menu_m3>div { */
+/*                         height: 100%; */
+/*                     } */
 
                     .menu_m2>div>img {
                         height: 300px;
@@ -47,22 +53,40 @@
                     .menu_m3>div>img {
                         width: 300px;
                         height: 200px;
-                        border-radius: 30px;
+                        border:none;
                     }
 
                     .menu_m2 div {
+                    	text-shadow:3px 3px 3px #cccccc;
+                    	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+                    	background-color:rgba(255,255,255,0.4);
+                    	border-radius: 7px;
+                    	border-top-left-radius: 2em 5em;
+						border-top-right-radius: 2em 5em;
                         width: 300px;
+                        height:430px;
                         display: inline-block;
-                        margin: 100px 50px;
+                        margin: 80px 0px 50px 150px ;
+                        text-align: center;
                     }
 
                     .menu_m3 div {
+                    	
+                    	text-shadow:3px 3px 3px #cccccc;
+                    	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+                    	background-color:rgba(255,255,255,0.4);
+                    	border-radius: 7px;
+                    	
+                    	height:330px;
                         width: 300px;
                         display: inline-block;
-                        margin: 100px 50px;
+                        margin: 80px 0px 150px 150px ;
+                        text-align: center;
                     }
 
                     .menu_m1 img {
+                    	border-top:black 1px solid;
+                    	
                         width: 100%;
                     }
 
@@ -103,6 +127,15 @@
                         width: 20px;
                         height: 20px;
                     }
+                    .display-1{
+                    	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+                    	text-shadow:3px 3px 3px #cccccc;
+                    	margin:auto;
+                    	color:#d9534f;
+                     	width:fit-content;
+                    	background-color:rgba(255,238,173,0.5);
+                    	border-radius:7px;
+                    }
                 </style>
             </head>
 
@@ -110,9 +143,13 @@
 
                 <div id="menu_body">
                     <div class="menu_m1">
+                    	<h1 class="display-1">雞排區</h1>
                         <div class="menu_m2"></div>
-                        <hr>
+                              
+                                          <hr>
+                        <h1 class="display-1">飲料區</h1>
                         <div class="menu_m3"></div>
+                        
 
                     </div>
 
@@ -147,11 +184,11 @@
 		        	<div>
 		        		<input id="pid${'${obj.prodID}'}" class="pdID" type="hidden" name="prodId" value="${'${obj.prodID}'}">
 		                <img src="../img/${'${obj.prodName}'}.jpg" alt="">
-		                <h5 id="prodname${'${obj.prodID}'}" class="pdName">${'${obj.prodName}'}</h5>
+		                <h5 style="margin-top:8px;" id="prodname${'${obj.prodID}'}" class="pdName">${'${obj.prodName}'}</h5>
 		                <hr>
-		                <h5 id="price${'${obj.prodID}'}" class="pdPrice">NT${'${obj.prodPrice}'}</h5>
+		                <h5 style="margin:8px 0 8px 0;" id="price${'${obj.prodID}'}" class="pdPrice">NT${'${obj.prodPrice}'}</h5>
 		                <button class="click_inc btn btn-primary" id="menu_click_inc${'${obj.prodID}'}">＋</button>
-		                <span id="menu_inputid${'${obj.prodID}'}" class="menu_input">0</span>
+		                <span style="margin:0px 5px 0px 5px;"  id="menu_inputid${'${obj.prodID}'}" class="menu_input">0</span>
 	                	<button class="click_dec btn btn-primary" id="menu_click_dec${'${obj.prodID}'}">－</button>
 		                
 		                <br>
@@ -163,11 +200,11 @@
 					<div>
 		        		<input id="pid${'${obj.prodID}'}" class="pdID1" type="hidden" name="prodId" value="${'${obj.prodID}'}">
 		                <img src="../img/${'${obj.prodName}'}.jpg" alt="">
-		                <h5 id="prodname${'${obj.prodID}'}" class="pdName1">${'${obj.prodName}'}</h5>
+		                <h5 style="margin-top:8px;" id="prodname${'${obj.prodID}'}" class="pdName1">${'${obj.prodName}'}</h5>
 		                <hr>
-		                <h5 id="price${'${obj.prodID}'}" class="pdPrice1">NT${'${obj.prodPrice}'}</h5>
+		                <h5 style="margin:8px 0 8px 0;" id="price${'${obj.prodID}'}" class="pdPrice1">NT${'${obj.prodPrice}'}</h5>
 		                <button class="click_inc btn btn-primary" id="menu_click_inc${'${obj.prodID}'}">＋</button>
-		                <span id="menu_inputid${'${obj.prodID}'}" class="menu_input1">0</span>
+		                <span style="margin:0px 5px 0px 5px;" id="menu_inputid${'${obj.prodID}'}" class="menu_input1">0</span>
 	                	<button class="click_dec btn btn-primary" id="menu_click_dec${'${obj.prodID}'}">－</button>
 		                
 		                <br>
@@ -292,6 +329,8 @@
                     var name = document.getElementsByClassName('prodcar');
                     var a = $(event.target).closest('tr').index();
                     var prodname = '#' + name[a - 1].id;
+                    
+                    
 
 
                     //刪除當前商品
@@ -308,8 +347,8 @@
 
                     // 			抓 單品每項數量
                     var numid = '#' + c[a - 1].id;
-                    var num = $(numid).text();
-
+                    var num = $(numid).text("0");
+					
 
                     // 			抓 總金額
                     var priceid = '#' + d[a - 1].id;

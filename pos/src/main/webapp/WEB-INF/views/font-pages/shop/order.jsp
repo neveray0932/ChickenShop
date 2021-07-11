@@ -11,7 +11,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Login</title>
+<title>訂單明細</title>
 
 <style>
 	th, td {
@@ -89,7 +89,7 @@
 					<span>${a.prodfk.prodName}</span>
 				</c:forEach><br>
 
-			<label for="" class="mylabel">商品數量 ： </label>
+			<label for="" class="mylabel">商品總量 ： </label>
 				<span>${test5}</span><br>
 			<label for="" class="mylabel">商品總價 ： </label>
 				<span>${test4}</span><br>

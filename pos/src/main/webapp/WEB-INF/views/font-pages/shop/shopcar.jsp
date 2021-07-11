@@ -10,7 +10,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-	<title>ShopCar</title>
+	<title>購物車</title>
 	
 	<!-- CSS only -->
 	<!-- JavaScript Bundle with Popper -->
@@ -32,7 +32,7 @@
 			<table id="shopcarT" class="table table-sm table-dark" style="margin-top: 100px;">
 				<thead>
 					<tr>
-						<th scope="col">#</th>
+						<th scope="col">項</th>
 						<th>商品名稱</th>
 						<th>商品價格</th>
 						<th>商品數量</th>
@@ -118,7 +118,7 @@
     		
     		num = menu_click_inc(x);
     		$(`#cart_num${'${a+1}'}`).text(num);  
-    		$(`inpnum${'${a+1}'}`).val(`${'${num}'}`);
+    		$(`#inpnum${'${a+1}'}`).val(`${'${num}'}`);
     		total = sum(num,i);
 
     		$(`#cart_resultp${'${a+1}'}`).text(total);

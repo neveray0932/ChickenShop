@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
+<title>首頁</title>
 </head>
 <style>
 .box {
@@ -106,7 +106,7 @@ body {
 		<br>
 
 	</div>
-	<script src="../Script/DateFormat.js"></script>
+	
 	<script type="text/javascript">
 	
 $.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-5497E4A6-E23E-4174-B879-FB99E1314164&limit=5&format=JSON&locationName=臺中市', function(req, res) {
@@ -123,12 +123,7 @@ $.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorizati
 
 
     var nowtime = new Date();
-    console.log(new Date(noon.startTime))
-    console.log(new Date(noon.endTime))
-    console.log(new Date(night.startTime))
-    console.log(new Date(night.endTime))
-    console.log(new Date(morning.startTime))
-    console.log(new Date(morning.endTime))
+    
 
 	
 
@@ -146,12 +141,22 @@ $.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorizati
             </ul>
            
     `);
+	    var d = new Date();
+	    var ye = new Intl.DateTimeFormat('zh', {
+	        year: 'numeric'
+	    }).format(d);
+	    var mo = new Intl.DateTimeFormat('zh', {
+	        month: 'short'
+	    }).format(d);
+	    var da = new Intl.DateTimeFormat('zh', {
+	        day: '2-digit'
+	    }).format(d);
     
     
 
-    setInterval(function() {
-        $('.card-text').text(new Date());
-    }, 1000)
+    
+        $('.card-text').text(`${'${ye}${mo}${da}'}`);
+    
 })
 </script>
 

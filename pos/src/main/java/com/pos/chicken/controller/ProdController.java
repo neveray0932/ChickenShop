@@ -92,7 +92,7 @@ public class ProdController {
 	private void saveUploadedFiles(MultipartFile files) throws IOException {
 		byte[] bytes = files.getBytes();
 		Path path = Paths.get(path1 + files.getOriginalFilename());
-		System.out.println(path);
+//		System.out.println(path);
 		Files.write(path, bytes);
 	}
 

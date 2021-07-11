@@ -64,9 +64,7 @@ public class PublicController {
 	public String bakeIndex() {
 		return "/back-pages/bakeIndex";
 	}
-	
-	
-	
+
 	//員工
 	@RequestMapping(path = { "/pages/emp.page" })
 	public String emp() {

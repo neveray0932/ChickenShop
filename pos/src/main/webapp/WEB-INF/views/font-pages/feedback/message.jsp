@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Home</title>
+	<title>表單填寫</title>
 	<!-- <link rel="stylesheet" href="./css/mycss.css"> -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<style>
@@ -18,6 +18,31 @@
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 </head>
+<style>
+/* 	div { */
+/*   margin-bottom: 10px; */
+/*   position: relative; */
+/* } */
+
+
+
+#phone + span {
+  padding-right: 30px;
+}
+
+#phone:invalid+span:after {
+   content: '✖';
+  padding-left: 5px;
+  color: #8b0000;
+}
+
+#phone:valid+span:after {
+  
+  content: '✓';
+  padding-left: 5px;
+  color: #009000;
+}
+</style>
 
 <body>
 	
@@ -62,16 +87,14 @@
     			       <textarea id="msg" class="form-control" rows="10" cols="50" style="resize:none"></textarea>
     			    </fieldset>
 					
-    			   
-    			
-
 				<div class="form-group col-xs-12">
-                    <h3 for="pwd">姓名:</h3>
+                    <label for="name">姓名:</label>
                     <input type="text" class="form-control" id="name">
                 </div>
                 <div class="form-group col-xs-12">
-                    <h3 for="pwd">電話:</h3>
-                    <input type="number" class="form-control" id="phone">
+                    <label for="phone">電話:</label>
+                    <input id="phone" type="text" class="form-control" name="phone" placeholder="0912345678" required pattern="[0]{1}[9]{1}[0-9]{8}" >
+                    <span class="validity"></span>
                 </div>
                 <div class="form-group col-xs-12">
                     <button type="button" id="sendOrder" class="btn btn-primary col-xs-12" onclick="">提交</button>
@@ -110,19 +133,7 @@
  
         //滿意度
         var satis =document.getElementById('selectS').value;
-        
-        console.log(satis)
-        
-
-        // 擋住不填資料邏輯
-//         if(name == ''){
-//           $('#name').css('border','1px solid #ff0000');
-//           status = false;
-//         }
-//         if(phone == ''){
-//           $('#phone').css('border','1px solid #ff0000');
-//           status = false;
-//         }
+   
         if(msg == ''){
           $('#msg').css('border','1px solid #ff0000');
           status = false;
@@ -132,7 +143,18 @@
         	  text: '請填寫您寶貴的意見!'
         	});
         }
-
+        //電話號碼
+        var phone =document.getElementById('phone').value;
+        var re=/[0]{1}[9]{1}[0-9]{8}/ ;
+        if(!re.test(phone) ){
+        	$('#phone').css('border','1px solid #ff0000');
+        	status = false;
+        	Swal.fire({
+          	  icon: 'error',
+          	  title: '哭阿...',
+          	  text: '請填寫正確的電話!'
+          	});
+        }
 
 //         // 如果 �必填欄位都過了 才會到這邊
         if(status){
@@ -156,7 +178,7 @@
 //             'order': order,
 //             'price': price,
           }
-          console.log(data);
+//           console.log(data);
           // 呼叫 send ajax function
           send(data);
         }
@@ -174,7 +196,7 @@
 			        dataType: "JSON",
 			        // 成功送出 會回頭觸發下面這塊感謝
 			        success: function (response) {
-			          console.log(response);
+// 			          console.log(response);
 			          Swal.fire('提交成功!',
 								'感謝您寶貴的建議!',
 								'success');

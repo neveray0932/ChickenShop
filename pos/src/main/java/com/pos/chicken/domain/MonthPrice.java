@@ -4,10 +4,6 @@ package com.pos.chicken.domain;
 
 
 public class MonthPrice {
-	
-
-	
-
 	private Long totalprice;
 	private Integer month;
 	

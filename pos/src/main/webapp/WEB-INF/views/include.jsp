@@ -35,7 +35,8 @@
             
             body {
                 background-image: url(../img/menu3.jpg);
-                background-size: cover;
+                background-size: 100%;
+                background-attachment: fixed;
             }
             
             #index_position {
@@ -121,9 +122,11 @@
                         <div class="dropdown-menu">
                             <table id="gotocartable" class="table table-dark table-striped">
                                 <tbody>
+                                    <th></th>
                                     <th>品名</th>
                                     <th>價錢</th>
                                     <th>數量</th>
+                                    <th>刪除</th>
                                 </tbody>
 
                             </table>
@@ -148,22 +151,17 @@
 
             <br>
 
-            <div id="footer">
+             <div id="footer">
 
                 <div class="home_footer">
-                    <span style="font-size: xx-large; text-decoration: none;"> <a
-						style="text-decoration: none; color: orange;" href="#">CHICKENSHOP</a>
-					</span>加盟專線：0952-123456
-					信箱：
-                    <a style="" href="mailto:mongagtw@gmail.com">roy55662233@gmail.com</a>
-                    &emsp;&emsp;
-                    <a  href="<c:url value="/pages/login.page"/>">後台登入</a>
-                    
-                    <a href="#top" class="scroll"><img style="position: fixed; right: 0px;" src="../img/Bu_GoTop.png" alt=""></a>
+                    <img style="width:300px;height:50px" src="../img/footer.jpg" alt=""> &emsp;&emsp;&emsp;加盟專線：0952-123456
+                    &emsp;&emsp;&emsp;LINE：@694nmohn  &emsp;&emsp;&emsp;信箱：
+                    <a href="" style="text-decoration-line: none; color:white">chickenshop@gmail.com</a>
+                   	<a  href="<c:url value="/pages/login.page"/>" style="text-decoration-line: none; color:white; position: fixed; bottom:10px;right: 80px;">後台登入</a>
+                   	<a href="#top" class="scroll"><img style="position: fixed; right: 0px;" src="../img/Bu_GoTop.png" alt=""></a>
                 </div>
 
             </div>
-
             <script type="text/javascript">
                 function crazy1() {
                     console.log("OK")

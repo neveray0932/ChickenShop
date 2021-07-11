@@ -25,12 +25,9 @@ public class i18nrunner implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		String message=messageSource.getMessage("login.failed",null,Locale.TAIWAN);
-//		System.out.println("messgae"+message);
-		
-//		System.out.println("demoKey="+demoKey1);
-		
+
 		String phrase =environment.getProperty("demo.settings.key");
-//		System.out.println("Runing Spring boot project: "+phrase);
+
 
 	}
 

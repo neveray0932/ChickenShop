@@ -117,7 +117,7 @@ public class ShopcarController {
 		  		  		+ "        <td style=' border: 1px solid black; height: 75px; text-align:center;'> %d </td>\r\n"
 		  		  		+ "        <td style=' border: 1px solid black; height: 75px; text-align:center;'> %d </td>\r\n"
 		  		  		+ "    </tr>"
-		  		  		, prodDao.getById(prodInt).getProdName(),prodCount[k-1],prodDao.getById(prodInt).getProdPrice());
+		  		  		, prodDao.getById(prodInt).getProdName(),prodCount[k-1],(prodDao.getById(prodInt).getProdPrice()*prodCount[k-1]));
 				//表格開頭+身體內容(str)
 				String fixed="<html><body><table style='border-collapse: collapse;border: 1px solid black;'>\r\n"
 						+ "    <tr style=' border: 1px solid black; text-align:center;'>\r\n"

@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,7 +72,7 @@ public class ProdRestAPI {
 	//訂單主表
 	@GetMapping("/oderds")
 	public List<OrderBean> oderdsfindAll(){
-		List<OrderBean> result= ordersJpa.findAll();
+		List<OrderBean> result= ordersJpa.findAll(Sort.by(Sort.Direction.DESC, "orderId"));
 //		System.out.println(result);
 		return (result);
 	}
